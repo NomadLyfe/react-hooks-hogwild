@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Nav = ({ hogs }) => {
-    const [showDetails, setShowDetails] = useState(Array(hogs.length).fill(false));
+const Nav = ({ hogs, showDetails, setShowDetails }) => {
+    
 
     function handleClick(event) {
         setShowDetails((showDetails) => {
             const newArray = {...showDetails, [parseInt(event.target.getAttribute("tileid"))]: !showDetails[parseInt(event.target.getAttribute("tileid"))]}
-            console.log(event.target.id)
             return newArray;
         });
     }
@@ -22,9 +21,8 @@ const Nav = ({ hogs }) => {
             </div>
         )
         details = [...details, hogDetails]
-        console.log(showDetails[i])
         return (
-            <div className="pigTile" onClick={handleClick} key={hog.name} tileid={i}>
+            <div className="pigTile ui eight wide column" onClick={handleClick} key={hog.name} tileid={i}>
                 <div className="image" tileid={i}>
                     <img src={hog.image} tileid={i}></img>
                 </div>
@@ -37,7 +35,7 @@ const Nav = ({ hogs }) => {
     });
 
 	return (
-		<div className="tileSectionWrapper">
+		<div className="ui grid container">
 			<span>{hogTiles}</span>
 		</div>
 	);
